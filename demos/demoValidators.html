@@ -164,6 +164,21 @@
 			</label>
                     
 		</fieldset>
+
+		<fieldset>
+			<legend>Conditional NOT required</legend>
+			<label>
+				<span>Depending field (1): </span>
+				<select name="operatingSystem" id="operatingSystem" />
+					<option value="">Other</option>
+					<option value="Mac OS">Mac OS</option>
+					<option value="Windows">Windows</option>
+					<option value="Linux">Linux</option>
+				</select>
+				
+			</label>
+			<input class="validate[condNotRequired[operatingSystem]]" type="text" id="operatingSystem-other" name="operatingSystem"/>
+		</fieldset>
 			
 		<fieldset>
 			<legend>
