@@ -10,31 +10,34 @@
  * Form validation engine allowing custom regex rules to be added.
  * Licensed under the MIT License
  */
- (function($) {
+(function($) {
 
-	 "use strict";
+	"use strict";
 
-	 var methods = {
+	var methods = {
 
-		 /**
+		/**
 		 * Kind of the constructor, called before any action
 		 * @param {Map} user options
 		 */
-		 init: function(options) {
-			 var form = this;
-			 if (!form.data('jqv') || form.data('jqv') == null ) {
-				 options = methods._saveOptions(form, options);
-				 // bind all formError elements to close on click
-				 $(".formError").live("click", function() {
-					 $(this).fadeOut(150, function() {
-						 // remove prompt once invisible
-						 $(this).parent('.formErrorOuter').remove();
-						 $(this).remove();
-					 });
-				 });
-			 }
-			 return this;
-		 },
+		init: function(options) {
+			var form = this;
+			if (!form.data('jqv') || form.data('jqv') == null ) {
+				options = methods._saveOptions(form, options);
+				// bind all formError elements to close on click
+				$(".formError").live("click", function() {
+				 	if (typeof $(this).data("callerField") !== "undefiend") {
+				 		$(this).data("callerField").trigger('jqv.field.closePrompt');
+				 	}
+					$(this).fadeOut(150, function() {
+						// remove prompt once invisible
+						$(this).parent('.formErrorOuter').remove();
+						$(this).remove();
+					});
+				});
+			}
+			return this;
+		},
 		/**
 		* Attachs jQuery.validationEngine to form.submit and field.blur events
 		* Takes an optional params: a list of options
