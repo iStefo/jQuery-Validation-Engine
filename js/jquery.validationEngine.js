@@ -639,6 +639,12 @@
 							required = true;
 						}
 						break;
+					case "condNotRequired":
+						errorMsg = methods._condNotRequired(field, rules, i, options);
+						if (errorMsg !== undefined) {
+							required = true;
+						}
+						break;
 
 					default:
 				}
@@ -1833,6 +1839,33 @@
 				 * Indicate this special use by setting the last parameter to true so we only validate the dependingField on chackboxes and radio buttons (#462)
 				 */
 				if (dependingField.length && methods._required(dependingField, ["required"], 0, options, true) == undefined) {
+					/* We now know any of the depending fields has a value,
+					 * so we can validate this field as per normal required code
+					 */
+					return methods._required(field, ["required"], 0, options);
+				}
+			}
+		},
+		/**
+		* Conditionally NOT required field, works as _condRequired but "inverts" the output
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		* user options
+		* @return an error string if validation failed
+		*/
+		_condNotRequired: function(field, rules, i, options) {
+			var idx, dependingField;
+
+			for(idx = (i + 1); idx < rules.length; idx++) {
+				dependingField = jQuery("#" + rules[idx]).first();
+
+				/* Use _required for determining wether dependingField has a value.
+				 * There is logic there for handling all field types, and default value; so we won't replicate that here
+				 */
+				if (dependingField.length && !(methods._required(dependingField, ["required"], 0, options) == undefined)) {
 					/* We now know any of the depending fields has a value,
 					 * so we can validate this field as per normal required code
 					 */

@@ -102,6 +102,7 @@ The following attribute's value will be loaded for the relative validation rule:
 * required
 * groupRequired
 * condRequired
+* condNotRequired
 
 ##### data-errormessage-type-mismatch
 * past
@@ -446,6 +447,19 @@ This makes the field required, but only if any of the referred fields has a valu
 ```html
 <input value="" type="text" name="creditcard" id="creditcard" />
 <input class="validate[condRequired[creditcard]]" type="text" id="ccv" name="ccv"/>
+```
+
+### condNotRequired
+
+Works as described by `condRequired` but marks field as required only when referred field has NO value (usefull for "other"-option)
+
+```html
+<select name="operatingSystem" id="operatingSystem" />
+	<option value="">Other</option>
+	<option value="Mac OS">Mac OS</option>
+	...
+</select>
+<input class="validate[condNotRequired[operatingSystem]]" type="text" id="operatingSystem-other" name="operatingSystem-other"/>
 ```
 
 ### custom[regex_name]
