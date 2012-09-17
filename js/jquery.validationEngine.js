@@ -1728,7 +1728,8 @@
 			switch (positionType) {
 				default:
 				case "topCenter":
-					promptleftPosition += fieldLeft + (fieldWidth/2) - (promptElmt.width()/2) + 5;
+					console.log(fieldWidth, promptElmt.outerWidth());
+					promptleftPosition += fieldLeft + 2 + (fieldWidth/2) - (promptElmt.width()/2);
 					promptTopPosition += fieldTop;
 					break;
 
