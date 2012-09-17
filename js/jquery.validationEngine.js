@@ -177,7 +177,7 @@
 		*
 		* @param {String} promptText html text to display type
 		* @param {String} type the type of bubble: 'pass' (green), 'load' (black) anything else (red)
-		* @param {String} possible values topLeft, topRight, bottomLeft, centerRight, bottomRight
+		* @param {String} possible values topLeft, topRight, topCenter, bottomLeft, centerRight, bottomRight
 		*/
 		showPrompt: function(promptText, type, promptPosition, showArrow) {
 
@@ -1523,6 +1523,8 @@
 						prompt.find(".formErrorContent").before(arrow);
 						arrow.addClass("formErrorArrowBottom").html('<div class="line1"><!-- --></div><div class="line2"><!-- --></div><div class="line3"><!-- --></div><div class="line4"><!-- --></div><div class="line5"><!-- --></div><div class="line6"><!-- --></div><div class="line7"><!-- --></div><div class="line8"><!-- --></div><div class="line9"><!-- --></div><div class="line10"><!-- --></div>');
 						break;
+					case "topCenter":
+						arrow.addClass("formErrorArrowCenter");
 					case "topLeft":
 					case "topRight":
 						arrow.html('<div class="line10"><!-- --></div><div class="line9"><!-- --></div><div class="line8"><!-- --></div><div class="line7"><!-- --></div><div class="line6"><!-- --></div><div class="line5"><!-- --></div><div class="line4"><!-- --></div><div class="line3"><!-- --></div><div class="line2"><!-- --></div><div class="line1"><!-- --></div>');
@@ -1725,6 +1727,11 @@
 			
 			switch (positionType) {
 				default:
+				case "topCenter":
+					promptleftPosition += fieldLeft + (fieldWidth/2) - (promptElmt.width()/2) + 5;
+					promptTopPosition += fieldTop;
+					break;
+
 				case "topRight":
 					promptleftPosition +=  fieldLeft + fieldWidth - 30;
 					promptTopPosition +=  fieldTop;
@@ -1885,7 +1892,7 @@
 		// Focus on the first input
 		focusFirstField:true,
 		// Opening box position, possible locations are: topLeft,
-		// topRight, bottomLeft, centerRight, bottomRight
+		// topRight, topCenter, bottomLeft, centerRight, bottomRight
 		promptPosition: "topRight",
 		bindMethod:"bind",
 		// internal, automatically set to true when it parse a _ajax rule

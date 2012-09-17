@@ -78,6 +78,10 @@ body.rtl .formError .formErrorArrow {
 	top:2px;
 }
 
+.formError .formErrorArrowCenter {
+    margin: -2px auto 0 auto;
+}
+
 .formError .formErrorArrow div {
 	border-left: 2px solid #ddd;
 	border-right: 2px solid #ddd;
