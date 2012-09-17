@@ -510,6 +510,7 @@
 			var promptType = "";
 			var required = false;
 			var limitErrors = false;
+			var forceArrow = field.data("forceArrow") || options.forceArrow;
 			options.isError = false;
 			options.showArrow = true;
 			
@@ -686,7 +687,8 @@
 
 			if ((fieldType == "radio" || fieldType == "checkbox") && form.find("input[name='" + fieldName + "']").size() > 1) {
 				field = $(form.find("input[name='" + fieldName + "'][type!=hidden]:first"));
-				options.showArrow = false;
+				if (!forceArrow)
+					options.showArrow = false;
 			}
 
 			if(field.is(":hidden") && options.prettySelect) {
@@ -1912,6 +1914,8 @@
 		binded: true,
 		// set to true, when the prompt arrow needs to be displayed
 		showArrow: true,
+		// set to true to show arrows on radio buttons and checkboxes (usually disabled)
+		forceArrow: false,
 		// did one of the validation fail ? kept global to stop further ajax validations
 		isError: false,
 		// Limit how many displayed errors a field can have
