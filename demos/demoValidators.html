@@ -168,16 +168,16 @@
 		<fieldset>
 			<legend>Conditional NOT required</legend>
 			<label>
-				<span>Depending field (1): </span>
-				<select name="operatingSystem" id="operatingSystem" />
-					<option value="">Other</option>
+				<span>One of the two has to have a value: </span>
+				<select name="operatingSystem" id="operatingSystem" class="validate[condNotRequired[operatingSystem-other]]" />
+					<option value=""> - Select - </option>
 					<option value="Mac OS">Mac OS</option>
 					<option value="Windows">Windows</option>
 					<option value="Linux">Linux</option>
 				</select>
-				
+				<span>"Optional/Other" field (depending field):</span>
 			</label>
-			<input class="validate[condNotRequired[operatingSystem]]" type="text" id="operatingSystem-other" name="operatingSystem"/>
+			<input type="text" id="operatingSystem-other" name="operatingSystem"/>
 		</fieldset>
 			
 		<fieldset>

@@ -640,7 +640,7 @@
 						}
 						break;
 					case "condNotRequired":
-						errorMsg = methods._condNotRequired(field, rules, i, options);
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._condNotRequired);
 						if (errorMsg !== undefined) {
 							required = true;
 						}

@@ -454,12 +454,12 @@ This makes the field required, but only if any of the referred fields has a valu
 Works as described by `condRequired` but marks field as required only when referred field has NO value (usefull for "other"-option)
 
 ```html
-<select name="operatingSystem" id="operatingSystem" />
+<select name="operatingSystem" id="operatingSystem" class="validate[condNotRequired[operatingSystem-other]]" />
 	<option value="">Other</option>
 	<option value="Mac OS">Mac OS</option>
 	...
 </select>
-<input class="validate[condNotRequired[operatingSystem]]" type="text" id="operatingSystem-other" name="operatingSystem-other"/>
+<input type="text" id="operatingSystem-other" name="operatingSystem"/>
 ```
 
 ### custom[regex_name]
